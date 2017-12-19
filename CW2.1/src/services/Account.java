@@ -21,8 +21,9 @@ public class Account {
         return this.accountBalance;
     }
     
-    public void deposit(double value, User userIn)
+    public synchronized void deposit(double value, User userIn)
     {
+
         double currentBal = this.accountBalance;
         double newBal = (currentBal + value);
         this.accountBalance = newBal;
@@ -31,14 +32,13 @@ public class Account {
 
     }
     
-    public void withdraw(double value, User userIn)
+    public synchronized void withdraw(double value, User userIn)
     {
         double currentBal = this.accountBalance;
         double newBal = (currentBal + value);   // + because values are negative in list of transactions
         this.accountBalance = newBal;
         System.out.println("Withdraw completed by user "+ userIn.getUserName());
         System.out.println("New Balance: "+ newBal);
-
     }
 
     
